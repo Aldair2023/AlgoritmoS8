@@ -5,6 +5,8 @@
  */
 package algoritmosecuencial;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author aldair
@@ -17,7 +19,7 @@ public class Ejercicio8 extends javax.swing.JFrame {
     public Ejercicio8() {
         initComponents();
         this.setLocationRelativeTo(null);
-        
+        txtHoras.requestFocusInWindow();
         
         
     }
@@ -79,14 +81,30 @@ public class Ejercicio8 extends javax.swing.JFrame {
         cmdCalcular.setBackground(new java.awt.Color(255, 0, 0));
         cmdCalcular.setForeground(new java.awt.Color(204, 204, 204));
         cmdCalcular.setText("Calcular");
+        cmdCalcular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdCalcularActionPerformed(evt);
+            }
+        });
         jPanel1.add(cmdCalcular, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 300, -1, -1));
 
         cmdBorrar.setBackground(new java.awt.Color(255, 0, 0));
         cmdBorrar.setForeground(new java.awt.Color(204, 204, 204));
         cmdBorrar.setText("Borrar");
+        cmdBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdBorrarActionPerformed(evt);
+            }
+        });
         jPanel1.add(cmdBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 300, 70, -1));
         jPanel1.add(txtDescu, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 170, 170, 40));
         jPanel1.add(txtTpagar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 230, 170, 40));
+
+        txtHoras.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtHorasKeyTyped(evt);
+            }
+        });
         jPanel1.add(txtHoras, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 110, 110, 40));
 
         jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\aldair\\Desktop\\istock_000019699924small.jpg")); // NOI18N
@@ -109,8 +127,54 @@ public class Ejercicio8 extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         System.exit(0);
-        
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void cmdCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdCalcularActionPerformed
+        
+        double res1, tpagar, hora, descuento;
+        
+        if(txtHoras.getText().trim().isEmpty()){
+            JOptionPane.showMessageDialog(null, "por favor ingrese la cantidad de hora que trabajo el profesor", "ERROR",JOptionPane.WARNING_MESSAGE);
+        }else
+        
+        try{
+        hora=Double.parseDouble(txtHoras.getText());
+        
+        res1=(hora*20000);
+        descuento=(res1*0.05);
+        tpagar=(res1-descuento);
+        
+        txtHoras.setText(""+hora);
+        txtDescu.setText(""+descuento);
+        txtTpagar.setText(""+tpagar);
+        
+        txtHoras.requestFocusInWindow();
+    }
+        catch(Exception e){
+    JOptionPane.showMessageDialog(null,"la cantidad ingresada en casilla hora es incorrecto, por favor corregir","ERROR",JOptionPane.ERROR_MESSAGE);
+    }
+        
+    }//GEN-LAST:event_cmdCalcularActionPerformed
+
+    private void cmdBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdBorrarActionPerformed
+        
+        txtHoras.setText("");
+        txtDescu.setText("");
+        txtTpagar.setText("");
+        
+        txtHoras.requestFocusInWindow();
+        
+    }//GEN-LAST:event_cmdBorrarActionPerformed
+
+    private void txtHorasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtHorasKeyTyped
+        char c=evt.getKeyChar();
+        
+        if(!Character.isDigit(evt.getKeyChar())&& evt.getKeyChar() != '.'){
+            getToolkit();
+            
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtHorasKeyTyped
 
     /**
      * @param args the command line arguments
