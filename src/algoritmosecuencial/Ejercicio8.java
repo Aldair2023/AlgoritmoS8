@@ -97,7 +97,11 @@ public class Ejercicio8 extends javax.swing.JFrame {
             }
         });
         jPanel1.add(cmdBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 300, 70, -1));
+
+        txtDescu.setEditable(false);
         jPanel1.add(txtDescu, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 170, 170, 40));
+
+        txtTpagar.setEditable(false);
         jPanel1.add(txtTpagar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 230, 170, 40));
 
         txtHoras.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -150,7 +154,7 @@ public class Ejercicio8 extends javax.swing.JFrame {
         
         txtHoras.requestFocusInWindow();
     }
-        catch(Exception e){
+        catch(Exception t){
     JOptionPane.showMessageDialog(null,"la cantidad ingresada en casilla hora es incorrecto, por favor corregir","ERROR",JOptionPane.ERROR_MESSAGE);
     }
         
@@ -167,8 +171,6 @@ public class Ejercicio8 extends javax.swing.JFrame {
     }//GEN-LAST:event_cmdBorrarActionPerformed
 
     private void txtHorasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtHorasKeyTyped
-        char c=evt.getKeyChar();
-        
         if(!Character.isDigit(evt.getKeyChar())&& evt.getKeyChar() != '.'){
             getToolkit();
             
